@@ -10,7 +10,7 @@ setInterval(fetchData, 1000);
 
 function fetchData()
 {
-    fetch("/leaderboard.json")
+    fetch("https://raw.githubusercontent.com/TheBoardBunch/theboardbunch.github.io/main/leaderboard.json")
         .then(response => response.json())
         .then(data => {
             if(!(JSON.stringify(data) === cachedData))
