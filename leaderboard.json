@@ -1,10 +1,10 @@
 [
     {
-        "name": "Person One",
-        "score": "200"
+        "name": "Person 1",
+        "score": 10000
     },
     {
-        "name": "Person Two",
-        "score": "100"
+        "name": "Person 2",
+        "score": 5000
     }
 ]
