@@ -4,52 +4,39 @@ nameAndScoreTemplate = document.getElementsByClassName("nameAndScore");
 
 namesAndScoresContainer = document.getElementById("namesAndScoresContainer");
 
-var cachedData = [];
+enterNameInput = document.getElementById("enterName").getElementsByTagName("input")[0];
 
-setInterval(fetchData, 1000);
+enterScoreInput = document.getElementById("enterScore").getElementsByTagName("input")[0];
 
-function fetchData()
+Interval();
+
+function Interval()
 {
-    fetch("/leaderboard.json")
-        .then(response => response.json())
-        .then(data => {
-            if(!(JSON.stringify(data) === cachedData))
-            {
-                cachedData = JSON.stringify(data);
-                
-                sortByScore(data);
-                
-                audio.play();
-
-                refreshLeaderBoard(data);
-            }
-        });
+    setLeaderBoard(nameAndScoreTemplate, namesAndScoresContainer, audio, true);
+    setTimeout(Interval, 10000);
 }
 
-function sortByScore(data)
+function enterNameAndScore()
 {
-    for (nameAndScore in data)
-    {
-        for (nameAndScore in data)
-        {
-            if(nameAndScore != 0 && data[nameAndScore].score > data[(nameAndScore - 1)].score)
-            {
-                [ data[nameAndScore], data[nameAndScore - 1] ] = [ data[nameAndScore - 1], data[nameAndScore] ];
-            }
-        }   
-    }
+    insertData(enterNameInput.value, enterScoreInput.value);
+    enterNameInput.value = "";
+    enterScoreInput.value = 0;
 }
 
-function refreshLeaderBoard(data)
+function editCurrentScore(id)
 {
-    namesAndScoresContainer.innerHTML = "";
+    score = document.getElementById(id).getElementsByTagName("input")[0].value;
+    editScore(id, score);
+}
 
-    for (nameAndScore in data)
-    {
-        namesAndScoresContainer.appendChild(nameAndScoreTemplate[0].cloneNode(true));
+function decrementScore(id)
+{
+    currentScore = document.getElementById(id).getElementsByClassName("score")[0].getElementsByTagName("h3")[0].innerHTML;
+    editScore(id,  parseInt(currentScore) - 1);
+}
 
-        namesAndScoresContainer.lastChild.getElementsByClassName("name")[0].getElementsByTagName("h3")[0].innerText = data[nameAndScore].name;
-
-        namesAndScoresContainer.lastChild.getElementsByClassName("score")[0].getElementsByTagName("h3")[0].innerText = data[nameAndScore].score;
-    }
+function incrementScore(id)
+{
+    currentScore = document.getElementById(id).getElementsByClassName("score")[0].getElementsByTagName("h3")[0].innerHTML;
+    editScore(id,  parseInt(currentScore) + 1);
 }

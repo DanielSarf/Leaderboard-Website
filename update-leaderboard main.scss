@@ -26,15 +26,16 @@ body
     background-repeat: no-repeat repeat;
     background-size: cover;
     mix-blend-mode: multiply;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
 }
 
 #containerDiv
 {
     height: 100%;
     width: 100%;
-    background-color: #EEDEC5;
+    min-height: 100vh;
+    background-image: linear-gradient(#EEDEC5, #EEDEC5, white);
 }
 
 header
@@ -43,16 +44,17 @@ header
     align-items: center;
     justify-content: space-around;
     margin: 0 var(--margin);
+    padding: 20px 0;
 
     img
     {
         height: auto;
-        width: 400px;
+        width: 20vw;
     }
 
     h1
     {
-        font-size: 128px;
+        font-size: 7vw;
     }
 }
 
@@ -61,20 +63,21 @@ header
     display: flex;
     margin: 0 calc(var(--margin) * 2.5);
     margin-bottom: 2%;
+    padding: 2%;
 
     h2
     {
-        font-size: 80px;
+        font-size: 4vw;
     }
 
     .titleName
     {
-        width: 100%;
+        width: 50%;
     }
-
+    
     .titleScore
     {
-        width: 100%;
+        width: 50%;
         text-align: center;
     }
 }
@@ -86,30 +89,275 @@ header
     .nameAndScore
     {
         display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        margin: 2% 0;
+        padding: 2%;
+        background-color: rgba(0, 255, 0, 0.1);
 
         h3
         {
-            font-size: 64px;
+            font-size: 3vw;
         }
 
         .name
         {
-            width: 100%;
-            text-align: left;
+            width: 50%;
         }
 
         .score
         {
-            width: 100%;
+            width: 50%;
             text-align: center;
+        }
+        
+        .buttonContainer
+        {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-basis: 100%;
+
+            .editScore
+            {
+                display: flex;
+                width: 50%;
+
+                input
+                {
+                    height: 50px;
+                    width: 100%;
+                    font-size: 40px;
+                }
+
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button
+                {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+
+                input
+                {
+                    -moz-appearance: textfield;
+                }
+
+                button
+                {
+                    height: 50px;
+                    width: auto;
+                    margin: 0 0 0 1%;
+                    background-color: rgba(255, 255, 255, 0.5);
+                    border: 0;
+                    font-size: 40px;
+                    line-height: 0;
+                    cursor: pointer;
+                }
+            }
+
+            .decrementButton
+            {
+                height: 50px;
+                width: 50px;
+                font-size: 40px;
+                line-height: 0;
+                background-color: red;
+                cursor: pointer; 
+            }
+    
+            .incrementButton
+            {
+                height: 50px;
+                width: 50px;
+                font-size: 40px;
+                line-height: 0;
+                background-color: lightgreen;
+                cursor: pointer; 
+            }
+    
+            .deleteButton
+            {
+                height: 50px;
+                width: 70px;
+                font-size: 20px;
+                line-height: 0;
+                cursor: pointer; 
+            }
         }
     }
 }
 
-@media (max-aspect-ratio: 515/545)
+#enterNameAndScore
+{
+    display: flex;
+    align-items: center;
+    margin: 2% calc(var(--margin) * 2.5);
+    padding: 2%;
+    background-color: rgba(0, 255, 0, 0.1);
+    
+    #enterName
+    {
+        width: 200%;
+
+        input
+        {
+            width: 100%;
+            font-size: 3vw;
+        }
+    }
+    
+    #enterScore
+    {
+        width: 100%;
+
+        input
+        {
+            width: 100%;
+            font-size: 3vw;
+            text-align: center;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button
+        {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input
+        {
+            -moz-appearance: textfield;
+        }
+    }
+    
+    button
+    {
+        height: auto;
+        width: auto;
+        margin: 0 0 0 1%;
+        background-color: rgba(255, 255, 255, 0.5);
+        border: 0;
+        font-size: 3vw;
+        cursor: pointer;
+    }
+}
+
+#clearLeaderboardButton
+{
+    display: block;
+    height: 50px;
+    width: 170px;
+    margin: 2% auto;
+    font-size: 20px;
+    line-height: 0;
+}
+
+@media (max-aspect-ratio: 285/210)
 {
     :root
     {
         --margin: 5%
+    }
+
+    header
+    {
+        img
+        {
+            width: 30vw;
+        }
+
+        h1
+        {
+            font-size: 9vw;
+        }
+    }
+
+    #title
+    {
+        h2
+        {
+            font-size: 7vw;
+        }
+    }
+
+    #namesAndScoresContainer
+    {
+        .nameAndScore
+        {
+            h3
+            {
+                font-size:5vw;
+            }
+
+            .buttonContainer
+            {
+                .editScore
+                {
+                    input
+                    {
+                        height: 6vw;
+                        font-size: 5vw;
+                    }
+
+                    button
+                    {
+                        height: 6vw;
+                        font-size: 6vw;
+                    }
+                }
+
+                .decrementButton
+                {
+                    height: 6vw;
+                    width: 6vw;
+                    font-size: 5vw;
+                }
+        
+                .incrementButton
+                {
+                    height: 6vw;
+                    width: 6vw;
+                    font-size: 5vw;
+                }
+        
+                .deleteButton
+                {
+                    height: 6vw;
+                    width: 15vw;
+                    font-size: 3vw;
+                }
+            }
+        }
+    }
+    
+    #enterNameAndScore
+    {       
+        #enterName
+        {
+            input
+            {
+                font-size: 5vw;
+            }
+        }
+        
+        #enterScore
+        {
+            input
+            {
+                font-size: 5vw;
+            }
+        }
+        
+        button
+        {
+            font-size: 5vw;
+        }
+    }
+
+    #clearLeaderboardButton
+    {
+        height: 6vw;
+        width: 50%;
+        font-size: 3vw;
     }
 }
